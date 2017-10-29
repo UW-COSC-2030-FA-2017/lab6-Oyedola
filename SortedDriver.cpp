@@ -1,4 +1,8 @@
-// SortedDriver.cpp
+//SortedDriver.cpp
+//Oyedola Ajao
+//COSC 2030 - FALL 2017
+//LAB6 
+//Due: 10/29/2017
 
 // tom bailey   1445  25 mar 2014
 // Construct sorted sequences and call functions that 
@@ -63,8 +67,45 @@ getWords(size_t numWords, size_t wordLength, string alphabet)
 double
 mostIsolated(vector<double> & number)
 {
-	// STUB  STUB  STUB
-	return -123.456;
+	double iso = 0;
+	double m = 0;
+	int m_index = 0;
+
+	for (int j = 0; j < number.size(); ++j)
+	{
+		if (j == (number.size() - 1.0))
+		{
+			iso = abs(number[j] - number[j - 1.0]);
+		}
+		else if (j == 0)
+		{
+			iso = abs(number[j] - number[j + 1.0]);
+		}
+		else
+		{
+			double l = abs(number[j] - number[j - 1.0]);
+
+			double r = abs(number[j] - number[j + 1.0]);
+
+			if (l > r)
+			{
+				iso = r;
+			}
+			else
+			{
+				iso = l;
+			}
+		}
+
+		if (iso > m)
+		{
+			m = iso;
+
+			m_index = j;
+		}
+	}
+
+	return number[m_index];
 }
 
 
@@ -74,8 +115,33 @@ mostIsolated(vector<double> & number)
 int
 unmatched(list<string> & A, list<string> & B)
 {
-	// STUB  STUB  STUB
-	return -1;
+	int same = 0;
+
+	list<string>::iterator a = A.begin();
+
+	list<string>::iterator b = B.begin();
+
+	while (a != A.end() && b != B.end())
+	{
+		if (*a == *b)
+		{
+			a++;
+
+			same++;
+		}
+		else if (*a < *b)
+		{
+			a++;
+		}
+		else
+		{
+			b++;
+		}
+	}
+
+	int not_same = A.size() - same;
+
+	return not_same;
 }
 
 
